@@ -1,0 +1,65 @@
+.option-item {
+  list-style: none;
+}
+
+.options-list.richtext .option-item:not(:first-child) {
+  border-top: 1px solid #eee;
+}
+
+.option.richtext:not(.selected) .card:hover,
+.option.richtext:not(.selected) .card:focus {
+  background: #F5FAFA;
+}
+
+.option:not(.selected):not(.richtext):hover,
+.option:not(.selected):not(.richtext):focus {
+  background: #E0FFFF;
+}
+
+.option.richtext.selected .card {
+  background: #2fcc8b;
+  color: #fff;
+}
+
+.option.selected:not(.richtext) {
+  background: #87ceeb;
+  color: #2f4f4f;
+}
+
+.options-list.richtext .no-results {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  justify-content: center;
+  background: #F5FAFA;
+}
+
+.options-list .no-results {
+  justify-content: center;
+  background: #87cefa;
+}
+
+.option {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.option.richtext:not(.selected):hover .card-label,
+.option.richtext:not(.selected):focus .card-label {
+  color: #2fcc8b;
+}
+
+.option:not(.richtext) {
+  background: none;
+  text-align: left;
+  padding: 6px;
+}
+
+.option:not(.selected):hover .card-icon:before,
+.option:not(.selected):focus .card-icon:before  {
+  background: #ffa500;
+}
+
+

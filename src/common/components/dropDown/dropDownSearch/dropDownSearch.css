@@ -1,0 +1,40 @@
+.dropDown-filter {
+  width: 400px;
+  position: relative;
+}
+
+.dropDown-filter .box {
+  display: flex;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  padding: 5px 8px;
+  align-items: center;
+}
+
+.box .input-text {
+  flex-grow: 1;
+}
+
+.box .input-text input {
+  border: none;
+  line-height: 2;
+  width: 100%;
+}
+
+.box .input-text input:focus-within {
+  outline: none;
+}
+
+.options-container {
+  display: none;
+}
+
+.options-container.open {
+  display: block;
+  margin: 2px 0;
+  border: 1px solid #d3d3d3;
+  width: 100%;
+  position: absolute;
+  max-height: 135px;
+  overflow: auto;
+} 

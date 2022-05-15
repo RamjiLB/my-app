@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-import DropDownFilter from "../common/components/DropDownFilter";
+import DropDownSearch from "../common/components/dropDown/dropDownSearch/DropDownSearch";
 import "./users.css";
 
 const Users = ({ datafetchUrl }) => {
@@ -62,6 +62,8 @@ const Users = ({ datafetchUrl }) => {
         (employee) => employee.relationships?.Manager?.data?.id || employee.id
       );
 
+      const uniqueManagerSet = [...new Set(managerIdList)];
+
       const employeesBriefInfo = employeeTableData.map((employee) => {
         employeeAccountId = employee.relationships?.account?.data?.id;
         employeeAccountInfo = accountTableData.filter(
@@ -76,7 +78,8 @@ const Users = ({ datafetchUrl }) => {
           lastName: employee.attributes?.lastName,
           name: employee.attributes?.name,
           email: employeeAccountInfo?.attributes?.email,
-          isManager: managerIdList.findIndex((id) => employee.id === id) !== -1,
+          isManager:
+            uniqueManagerSet.findIndex((id) => employee.id === id) !== -1,
         };
       });
 
@@ -94,7 +97,8 @@ const Users = ({ datafetchUrl }) => {
 
   const getEmployeesList = () => {
     return employeesInfo
-      ?.map((employee) => {
+      // .filter((employee) => employee.isManager)
+      .map((employee) => {
         const { employeeId: id, name: label, email: subTitle } = employee;
 
         return {
@@ -112,13 +116,15 @@ const Users = ({ datafetchUrl }) => {
       <div className="user-data">
         {isLoading && <div>{"Loading employees data"}</div>}
         {error && <div>{"Error loading data"}</div>}
-        {employeesInfo?.length && !error && (
-          <DropDownFilter
-            isDisabled={!employeesInfo?.length}
+
+        {employeesInfo?.length && !error && !isLoading && (
+          <DropDownSearch
             placeHolderText={"Choose Manager"}
+            isDisabled={!employeesInfo?.length}
             inputValuePattern="[^A-Za-z ]"
-            value={selectedManager}
+            isRichTextDropDown
             options={getEmployeesList()}
+            value={selectedManager}
             onValueSelect={handleManagerSelection}
           />
         )}

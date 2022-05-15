@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  text-align: left;
+  background-color: #fff;
+  width: 100%;
+  padding: 4px 15px;
+}
+
+.card-label {
+  font-size: 14px;
+}
+
+.card-subTitle {
+  display: block;
+}
+
+.card-icon:before {
+  background: #7ac5cd;
+  color: white;
+  opacity: 1;
+  content: attr(data-customicon);
+  display: inline-block;
+  border-radius: 10%;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
